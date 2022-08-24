@@ -1,8 +1,6 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
 import axios from 'axios';
+import Main from './Main.js'
 import './App.css';
 
 
@@ -15,7 +13,8 @@ class App extends React.Component {
       cityData: {},
       showMap: true,
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      map: '',
     }
   }
 
@@ -44,51 +43,28 @@ class App extends React.Component {
         errorMessage: `An Error Occurred: ${error.response.status}`,
       });
       console.log(error);
+      console.log(error.response.status)
     }
   };
 
   render() {
     return (
-      <>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group className="mb-3" controlId="city">
-            <Form.Label>Choose a city</Form.Label>
-            <Form.Control
-              aria-label="Default select example"
-              type="text"
-              name="city"
-              onInput={this.handleInput} />
-          </Form.Group>
-          <Button
-            variant="primary"
-            type="submit">
-            Explore!
-          </Button>
-        </Form>
-        {
-          this.state.showMap 
-          ?
-          <p>{'Give it a try!'}</p>
-        
-          :   
-           
-          this.state.error
-            ?
-            <p>{this.state.errorMessage}</p>
-            :
-            <Card>
-              <Card.Body>
-                <Card.Title>{this.state.cityData.display_name}</Card.Title>
-                <Card.Img src={this.state.map} />
-                <Card.Text>{`Latitude: ${this.state.cityData.lat}`}</Card.Text>
-                <Card.Text>{`Longitude: ${this.state.cityData.lon}`}</Card.Text>
-              </Card.Body>
-            </Card>
+
+        <Main
+        handleInput = {this.handleInput}
+        handleSubmit = {this.handleSubmit}
+        city = {this.state.city}
+        cityData = {this.state.cityData}
+        showMap = {this.state.showMap}
+        error = {this.state.error}
+        errorMessage = {this.state.errorMessage}
+        map = {this.state.map}
+        />
              
-        }
-      </>
+        
     );
-  }
+  
+}
 }
 
 export default App;
