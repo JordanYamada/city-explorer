@@ -39,7 +39,7 @@ class App extends React.Component {
       });
     } catch (error) {
       this.setState({
-        error: false,
+        error: true,
         errorMessage: `An Error Occurred: ${error.response.status}`,
       });
       console.log(error);
