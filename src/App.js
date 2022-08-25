@@ -86,8 +86,7 @@ class App extends React.Component {
 
 
   render() {
-    return (
-
+    return (git
         <Main
         handleInput = {this.handleInput}
         handleSubmit = {this.handleSubmit}
@@ -99,11 +98,8 @@ class App extends React.Component {
         map = {this.state.map}
         weatherData = {this.state.weatherData}
         showForecast = {this.state.showForeCast}
-        />
-             
-        
+        />  
     );
-  
 }
 }
 
