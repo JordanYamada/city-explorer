@@ -24,7 +24,9 @@ This project uses JavaScript, React and CSS to make the framework of the site an
 
 ## Work Flow Diagram
 
-(./src/images/Lab06-WhiteBoard.png)
+![Lab06](./src/images/Lab06-WhiteBoard.png)
+![Lab07](./src/images/Lab07-WhiteBoard.png)
+![Lab08](./src/images/Lab08-WhiteBoard.png)
 
 ## Time Estimates
 
@@ -36,9 +38,9 @@ Estimate of time needed to complete: 4 hours
 
 Start time: 2:40
 
-Finish time: _____
+Finish time: 1:30 (next day)
 
-Actual time needed to complete: _____
+Actual time needed to complete: 8 hours
 
 ## Getting Started with Create React App
 

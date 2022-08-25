@@ -1,4 +1,5 @@
 import React from "react";
+import Weather from './Weather.js';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
@@ -6,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 
 class Main extends React.Component {
 
- 
+
 
   render() {
     return (
@@ -26,17 +27,24 @@ class Main extends React.Component {
             Explore!
           </Button>
         </Form>
+        <Weather
+        weatherData = {this.props.weatherData}
+        showForecast = {this.props.showForeCast}
+        error = {this.props.error}
+        errorMessage = {this.props.errorMessage}
+        handleSubmit = {this.props.handleSubmit}
+        />
         {
-          this.props.showMap 
-          ?
-          <p>{'Give it a try!'}</p>
-        
-          :   
-           
-          this.props.error
+          this.props.showMap
             ?
-            <p>{this.props.errorMessage}</p>
+            <p>{'Give it a try!'}</p>
+
             :
+
+            this.props.error
+              ?
+              <p>{this.props.errorMessage}</p>
+              :
             <Card>
               <Card.Body>
                 <Card.Title>Location: {this.props.cityData.display_name}</Card.Title>
@@ -45,7 +53,8 @@ class Main extends React.Component {
                 <Card.Text>{`Longitude: ${this.props.cityData.lon}`}</Card.Text>
               </Card.Body>
             </Card>
-             
+            
+
         }
       </>
     );
