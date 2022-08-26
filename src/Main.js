@@ -5,11 +5,24 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
 
+
 class Main extends React.Component {
 
 
 
   render() {
+
+    let weatherArr = this.props.weatherData.map((weather, idx) => {
+      return (<Weather
+        key={idx}
+        showForecast = {this.props.showForeCast}
+        error = {this.props.error}
+        errorMessage = {this.props.errorMessage}
+        handleSubmit = {this.props.handleSubmit}
+        weatherData={weather}
+      />);
+    });
+
     return (
       <>
         <Form onSubmit={this.props.handleSubmit}>
@@ -27,13 +40,7 @@ class Main extends React.Component {
             Explore!
           </Button>
         </Form>
-        <Weather
-        weatherData = {this.props.weatherData}
-        showForecast = {this.props.showForeCast}
-        error = {this.props.error}
-        errorMessage = {this.props.errorMessage}
-        handleSubmit = {this.props.handleSubmit}
-        />
+        
         {
           this.props.showMap
             ?
@@ -53,11 +60,12 @@ class Main extends React.Component {
                 <Card.Text>{`Longitude: ${this.props.cityData.lon}`}</Card.Text>
               </Card.Body>
             </Card>
-            
+
 
         }
+        {weatherArr}
       </>
-    );
+    )
   }
 }
 
