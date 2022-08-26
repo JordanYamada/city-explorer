@@ -13,6 +13,7 @@ class App extends React.Component {
       cityData: {},
       showMap: true,
       weatherData: [],
+      movieData: [],
       showForeCast: true,
       error: false,
       errorMessage: '',
@@ -34,6 +35,7 @@ class App extends React.Component {
     e.preventDefault();
     let cityObj = await this.helpMap();
     this.helpWeather(cityObj);
+    this.helpMovie(this.state.city);
   };
 
 
@@ -89,6 +91,30 @@ class App extends React.Component {
   }
 
 
+  helpMovie = async (input) => {
+    try {
+       let urlMovie = `${process.env.REACT_APP_SERVER}/movie?original_title=${input}&format=json`;
+      //  console.log(this.state);
+       console.log(urlMovie);
+      let response = await axios.get(urlMovie
+      );
+      this.setState({
+        error: false,
+        movieData: response.data,
+      });
+      console.log(response.data);
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: `An Error Occurred: ${error.response.status}`,
+      });
+      console.log(error);
+      console.log(error.response.status)
+    }
+
+  }
+
+
   render() {
     return (
         <Main
@@ -102,6 +128,7 @@ class App extends React.Component {
         map = {this.state.map}
         weatherData = {this.state.weatherData}
         showForecast = {this.state.showForeCast}
+        movieData = {this.state.movieData}       
         />  
     );
 }
