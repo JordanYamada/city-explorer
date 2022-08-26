@@ -12,7 +12,7 @@ class App extends React.Component {
       city: '',
       cityData: {},
       showMap: true,
-      weatherData: {},
+      weatherData: [],
       showForeCast: true,
       error: false,
       errorMessage: '',
@@ -30,10 +30,10 @@ class App extends React.Component {
 //  urlWeather = `${process.env.REACT_APP_SERVER}/weather?city_name=${this.state.input}&format=json`;
 
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    this.helpMap();
-    this.helpWeather();
+    let cityObj = await this.helpMap();
+    this.helpWeather(cityObj);
   };
 
 
@@ -42,13 +42,18 @@ class App extends React.Component {
       let response = await axios.get(
         `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
       );
-
+      console.log(response.data[0]);
+      let map_Url = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=20`;
+      console.log(response.data[0]);
       this.setState({
         error: false,
         showMap: false,
         cityData: response.data[0],
-        map: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=20`,
+        map: map_Url,
       });
+      return response.data[0];
+      // console.log(this.state.cityData);
+      
     } catch (error) {
       this.setState({
         error: true,
@@ -59,20 +64,19 @@ class App extends React.Component {
     }
   }
 
-  helpWeather =async () => {
+  helpWeather = async (input) => {
     try {
-       let urlWeather = `${process.env.REACT_APP_SERVER}/weather?city_name=${this.state.city}&format=json`;
+       let urlWeather = `${process.env.REACT_APP_SERVER}/weather?lat=${input.lat}&lon=${input.lon}&format=json`;
       //  console.log(this.state);
        console.log(urlWeather);
       let response = await axios.get(urlWeather
       );
-      console.log(response);
-
       this.setState({
         error: false,
         showForecast: false,
-        weatherData: response.data[0],
+        weatherData: response.data,
       });
+      console.log(response.data);
     } catch (error) {
       this.setState({
         error: true,
@@ -86,7 +90,7 @@ class App extends React.Component {
 
 
   render() {
-    return (git
+    return (
         <Main
         handleInput = {this.handleInput}
         handleSubmit = {this.handleSubmit}
