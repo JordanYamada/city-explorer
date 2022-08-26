@@ -93,7 +93,7 @@ class App extends React.Component {
 
   helpMovie = async (input) => {
     try {
-       let urlMovie = `${process.env.REACT_APP_SERVER}/movie?original_title=${input}&format=json`;
+       let urlMovie = `${process.env.REACT_APP_SERVER}/movie?title=${input}`;
       //  console.log(this.state);
        console.log(urlMovie);
       let response = await axios.get(urlMovie
