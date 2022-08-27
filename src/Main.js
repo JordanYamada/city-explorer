@@ -1,8 +1,11 @@
 import React from "react";
 import Weather from './Weather.js';
+import Movies from './Movies.js';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
 
 
@@ -20,6 +23,16 @@ class Main extends React.Component {
         errorMessage = {this.props.errorMessage}
         handleSubmit = {this.props.handleSubmit}
         weatherData={weather}
+      />);
+    });
+
+    let movieArr = this.props.movieData.map((movie, idx) => {
+      return (<Movies
+        key={idx}
+        error = {this.props.error}
+        errorMessage = {this.props.errorMessage}
+        handleSubmit = {this.props.handleSubmit}
+        movieData={movie}
       />);
     });
 
@@ -64,6 +77,11 @@ class Main extends React.Component {
 
         }
         {weatherArr}
+        <Container>
+          <Row xs={1} sm={2} md={3} lg={4}>
+            {movieArr}
+          </Row>
+        </Container>
       </>
     )
   }

@@ -12,7 +12,7 @@ Building a City Explorer Site using API. This project is and introduction to int
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-This project uses JavaScript, React and CSS to make the framework of the site and integrates API data.
+This project uses JavaScript, Axios, React and CSS to make the framework of the site and integrates API data.
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
@@ -20,13 +20,16 @@ This project uses JavaScript, React and CSS to make the framework of the site an
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+See collab.md for credit collaborations.
 
 ## Work Flow Diagram
 
 ![Lab06](./src/images/Lab06-WhiteBoard.png)
 ![Lab07](./src/images/Lab07-WhiteBoard.png)
 ![Lab08](./src/images/Lab08-WhiteBoard.png)
+![Lab09](./src/images/Lab09-WhiteBoard.png)
+![Lab10](./src/images/Lab10-WhiteBoard.png)
 
 ## Time Estimates
 
